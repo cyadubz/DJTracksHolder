@@ -10,10 +10,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +40,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+
+    DBHelper dbOpen;
+    SQLiteDatabase db;
+    HolderProvider holderProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        dbOpen = new DBHelper(this);
+        db = dbOpen.getWritableDatabase();
+        //ContentValues cv = new ContentValues();
+        //cv.put("name", "Black Sun Empire");
+        //db.insert("author", null, cv);
+        this.holderProvider = new HolderProvider(dbOpen);
     }
 
 
@@ -131,13 +142,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position + 1, dbOpen);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 300;
         }
 
         @Override
@@ -160,6 +171,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      */
     public static class PlaceholderFragment extends ListFragment {
         private List<Track> tracks;
+        private HolderProvider holderProvider;
+        private DBHelper dbOpen;
 
         /**
          * The fragment argument representing the section number for this
@@ -171,26 +184,18 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
+            PlaceholderFragment fragment = new PlaceholderFragment(dbOpen);
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
-            List<Track> tracks = new ArrayList<Track>();
-            for (int i = 0; i < 10; i++) {
-                Track track = new Track();
-                track.setAuthorName("Author" + i);
-                track.setTrackName("Track" + i);
-                track.setRemixerName("Benga");
-                track.setCdNumber(i);
-                track.setTrackNumber(i);
-                tracks.add(track);
-            }
-            this.tracks = tracks;
+        public PlaceholderFragment(DBHelper dbOpen) {
+            this.dbOpen = dbOpen;
+            this.holderProvider = new HolderProvider(dbOpen);
+            this.tracks = holderProvider.getAllTracks();
         }
 
         @Override
