@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".BrowseTracks" >
     
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/action_browse"
+        android:title="@string/action_browse"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:showAsAction="ifRoom" />
 </menu>

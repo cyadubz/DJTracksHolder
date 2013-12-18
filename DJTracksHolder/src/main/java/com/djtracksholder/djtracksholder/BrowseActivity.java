@@ -1,7 +1,5 @@
 package com.djtracksholder.djtracksholder;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -9,23 +7,19 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
-
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class BrowseActivity extends Activity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -49,12 +43,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
-        //GoogleAccountCredential s;
-        // Set up the action bar.
-        final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.browse_layout);
+
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -64,45 +55,19 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
-
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         dbOpen = new DBHelper(this);
         db = dbOpen.getWritableDatabase();
-        //ContentValues cv = new ContentValues();
-        //cv.put("name", "Black Sun Empire");
-        //db.insert("author", null, cv);
-        //MOCKING OR REAL DATA HERE
-
-        this.holderProvider = new HolderProvider(dbOpen);
-        this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.browse_tracks, menu);
+        getMenuInflater().inflate(R.menu.browse, menu);
         return true;
     }
 
@@ -112,28 +77,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_browse:
-                Intent intent = new Intent(this, BrowseActivity.class);
-                startActivity(intent);
-                //return true;
+            case R.id.action_settings:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
+    
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -149,13 +99,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1, dbOpen);
+            return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 300;
+            return 3;
         }
 
         @Override
@@ -176,13 +126,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends ListFragment {
-        public static List<Track> allTracks;
-        private List<Track> tracks;
-        private HolderProvider holderProvider;
-        private DBHelper dbOpen;
-        private int number;
-
+    public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -193,41 +137,21 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
-            PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber, dbOpen);
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             //fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
-            this.dbOpen = dbOpen;
-            this.holderProvider = new HolderProvider(dbOpen);
-            if (this.allTracks == null) {
-                this.allTracks = holderProvider.getAllTracks();
-            }
-
-            this.tracks = new ArrayList<Track>();
-            for (Track track : allTracks) {
-                if (track.getCdNumber() == sectionNumber) {
-                    this.tracks.add(track);
-                }
-            }
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
-            setListAdapter(listAdapter);
+        public PlaceholderFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-
-            View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
