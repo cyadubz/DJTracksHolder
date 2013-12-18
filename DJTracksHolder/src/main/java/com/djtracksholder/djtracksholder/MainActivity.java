@@ -40,7 +40,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
-
+    int cdCount = 0;
     DBHelper dbOpen;
     SQLiteDatabase db;
     HolderProvider holderProvider;
@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
-
+        //GoogleAccountCredential s;
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -89,7 +89,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         //ContentValues cv = new ContentValues();
         //cv.put("name", "Black Sun Empire");
         //db.insert("author", null, cv);
+        //MOCKING OR REAL DATA HERE
+
         this.holderProvider = new HolderProvider(dbOpen);
+        this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
+        int a = 0;
     }
 
 
@@ -170,9 +174,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends ListFragment {
+        public static List<Track> allTracks;
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
+        private int number;
 
         /**
          * The fragment argument representing the section number for this
@@ -185,17 +191,26 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          * number.
          */
         public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
-            PlaceholderFragment fragment = new PlaceholderFragment(dbOpen);
+            PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber, dbOpen);
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
+            //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            //fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment(DBHelper dbOpen) {
+        public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            this.tracks = holderProvider.getAllTracks();
+            if (this.allTracks == null) {
+                this.allTracks = holderProvider.getAllTracks();
+            }
+
+            this.tracks = new ArrayList<Track>();
+            for (Track track : allTracks) {
+                if (track.getCdNumber() == sectionNumber) {
+                    this.tracks.add(track);
+                }
+            }
         }
 
         @Override
@@ -210,8 +225,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                 Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }

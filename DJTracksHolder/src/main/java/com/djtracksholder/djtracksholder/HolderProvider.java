@@ -51,7 +51,14 @@ public class HolderProvider {
         return tracks;
     }
 
-    public void addTrackToHolder(String authorName, String trackName, String remixAuthor, int cd, int n) {
+    public void addTrackToHolder(String authorName, String trackName, int cd, int n) {
+        if (trackName.contains("'")) {
+            trackName = trackName.replaceAll("'", "''");
+        }
+        if (authorName.contains("'")) {
+            authorName = authorName.replaceAll("'", "''");
+        }
+
         int authorId = getAuthorId(authorName);
         if (authorId == 0) {
             addAuthor(authorName);
@@ -68,6 +75,16 @@ public class HolderProvider {
 
         addTrackToHolder(cd, n, trackId);
         db.close();
+    }
+
+    public void addTrackToHolder(Track track) {
+        addTrackToHolder(track.getAuthorName(), track.getTrackName(), track.getCdNumber(), track.getTrackNumber());
+    }
+
+    public void addTracksToHolder(List<Track> tracks) {
+        for (Track track : tracks) {
+            addTrackToHolder(track);
+        }
     }
 
     public void addTrackToHolder(int cd, int n, int trackId) {
