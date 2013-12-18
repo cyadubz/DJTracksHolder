@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         //MOCKING OR REAL DATA HERE
 
         this.holderProvider = new HolderProvider(dbOpen);
-        this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
+        // this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
     }
 
 

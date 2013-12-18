@@ -1,5 +1,7 @@
 package com.djtracksholder.djtracksholder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -7,6 +9,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ListFragment;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -17,7 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
 
 public class BrowseActivity extends Activity {
 
@@ -99,7 +105,7 @@ public class BrowseActivity extends Activity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position + 1, dbOpen);
         }
 
         @Override
@@ -126,7 +132,13 @@ public class BrowseActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends ListFragment {
+        public static List<Track> allTracks;
+        private List<Track> tracks;
+        private HolderProvider holderProvider;
+        private DBHelper dbOpen;
+        private int number;
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -137,21 +149,41 @@ public class BrowseActivity extends Activity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
+            PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber, dbOpen);
             Bundle args = new Bundle();
             //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             //fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
+        public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
+            this.dbOpen = dbOpen;
+            this.holderProvider = new HolderProvider(dbOpen);
+            if (this.allTracks == null) {
+                this.allTracks = holderProvider.getAllTracks();
+            }
+
+            this.tracks = new ArrayList<Track>();
+            for (Track track : allTracks) {
+                if (track.getCdNumber() == sectionNumber) {
+                    this.tracks.add(track);
+                }
+            }
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
+            setListAdapter(listAdapter);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                                 Bundle savedInstanceState) {
+
+            View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
