@@ -152,8 +152,8 @@ public class BrowseActivity extends Activity {
         public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
             PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber, dbOpen);
             Bundle args = new Bundle();
-            //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            //fragment.setArguments(args);
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
             return fragment;
         }
 
@@ -187,7 +187,7 @@ public class BrowseActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(MockData.ok);
-            //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)) + " CD");
             return rootView;
         }
     }

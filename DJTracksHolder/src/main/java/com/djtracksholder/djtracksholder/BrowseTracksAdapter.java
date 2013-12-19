@@ -18,10 +18,12 @@ import java.util.List;
 public class BrowseTracksAdapter extends ArrayAdapter<Track> {
 
     private List<Track> tracks;
+    int resource;
 
     public BrowseTracksAdapter(Context context, int resource, List<Track> objects) {
         super(context, resource, objects);
         this.tracks = objects;
+        this.resource = resource;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class BrowseTracksAdapter extends ArrayAdapter<Track> {
         View v = convertView;
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.track_row, null);
+            v = inflater.inflate(resource, null);
         }
 
         Track track = tracks.get(position);
@@ -43,7 +45,9 @@ public class BrowseTracksAdapter extends ArrayAdapter<Track> {
 
             authorName.setText(track.getAuthorName());
             trackTitle.setText(track.getTrackName());
-            cdNumber.setText(String.valueOf(track.getCdNumber()));
+            if (trackNumber != null) {
+                cdNumber.setText(String.valueOf(track.getCdNumber()));
+            }
             trackNumber.setText(String.valueOf(track.getTrackNumber()));
         }
 

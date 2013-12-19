@@ -377,5 +377,124 @@ public class MockData {
             "9: Benton - Snowfall 07;" +
             "10: Benton - Joi;" +
             "11: The Kemistry - The Core (Benton Remix);" +
-            "12: Thelem - Drones (Benton Remix);";
+            "12: Thelem - Drones (Benton Remix);" +
+            "[CD]:33;" +
+            "1: Genetix - Installation;" +
+            "2: Genetix - Natural State;" +
+            "3: Genetix - Decoding;" +
+            "4: Bunzer0 - Ambivalent;" +
+            "5: DJ Madd - Pitfall (Phaeleh Remix);" +
+            "6: K Lone - Rapid Eye Movement;" +
+            "7: Tallan - Tahi;" +
+            "8: Seahorse - To Be One;" +
+            "9: Soul Captive - Survival;" +
+            "[CD]:34;" +
+            "1: DJ Madd - Blank Space;" +
+            "2: DJ Madd - Pitfall;" +
+            "3: DJ Madd - Murder 96;" +
+            "4: Phaeleh & DJ Madd - Ritual;" +
+            "5: Seven - Calculated;" +
+            "6: Phaeleh - Next Phase;" +
+            "7: DJ Madd - Swinger;" +
+            "8: MRK1 - Download The World;" +
+            "9: Mr Lager - Tell Me;" +
+            "10: Dubtek - Mecca (Gravity Remix);" +
+            "[CD]:35;" +
+            "1: Kryptic Minds - Brief Passing;" +
+            "2: Kryptic Minds - The Things They Left Behind;" +
+            "3: Kryptic Minds - Just After Sunset;" +
+            "4: Kryptic Minds - Fade To Nothing;" +
+            "5: Kryptic Minds - No More No Less;" +
+            "6: Kryptic Minds ft Alys Be - Cant Sleep;" +
+            "7: Kryptic Minds - Alone;" +
+            "8: Kryptic Minds - Myth;" +
+            "9: Kryptic Minds - The Fifth;" +
+            "10: Kryptic Minds - Depth Of Field;" +
+            "11: Kryptic Minds ft Youngsta - Arcane;" +
+            "[CD]:36;" +
+            "1: Phaeleh - Caustic Storm;" +
+            "2: Phaeleh - From A Distance;" +
+            "3: Phaeleh - In The Twilight;" +
+            "4: Phaeleh - Perilous;" +
+            "5: Phaeleh - Should Be True;" +
+            "6: Phaeleh - The Cold In You;" +
+            "7: Phaeleh - Think About It;" +
+            "8: Truth - Soundsystem;" +
+            "9: Truth & Organikismness - Devils Eye;" +
+            "[CD]:37;" +
+            "1: Biome - The Fear Of The Future;" +
+            "2: Biome - Industrial;" +
+            "3: Boot - Dark Things;" +
+            "4: J Kenzo - Ruffhouse;" +
+            "5: J Kenzo - Therapy;" +
+            "6: Skream - Abstruse;" +
+            "7: Tallan - Left One;" +
+            "8: Tallan - Border Control;" +
+            "9: Tallan - Sweeper;" +
+            "10: Tallan - Dreamer;" +
+            "11: Bulletproof & Truth - Avalanche;" +
+            "[CD]:38;" +
+            "1: Kahn ft Flowdan - Badman City;" +
+            "2: Matt U - Hammerhead (Instrumental);" +
+            "3: Matt U - Danger (Instrumental);" +
+            "4: Content - Osmosis VIP;" +
+            "5: Boot & TZR - Pathetic Earthlings;" +
+            "6: Biak - Ancient Crafts;" +
+            "7: Babylon System & SPL - Hypnosis;" +
+            "8: Crushington - Hangman;" +
+            "9: Crushington - Voodoo Skank;" +
+            "10: Habstract - Paris Vendetta;" +
+            "11: Habstract - 1990;" +
+            "12: Kahn - Illy;" +
+            "13: Kahn - Tehran;" +
+            "[CD]:39;" +
+            "1: Ipman - Mob Mentality;" +
+            "2: Killawatt & Ipman - Xibalba;" +
+            "3: Distance - Aftershock;" +
+            "4: Tunnige & Distance - Blame;" +
+            "5: DJ Madd - Deeply;" +
+            "6: DJ Madd - Riginal;" +
+            "7: Saviour - Burst Into Fire;" +
+            "8: Phaeleh - Fuzzbox;" +
+            "9: Unknown - Funny Unknown;" +
+            "[CD]:40;" +
+            "1: Biome & Fallen 45 - Searching;" +
+            "2: Crazy D - If I Want;" +
+            "3: Kinzy - Dirty Ladies;" +
+            "4: Konvex - Black Hole;" +
+            "5: Twisted & Racoon - Secluded (ft Beezy);" +
+            "6: Twisted & Racoon - Split Blade;" +
+            "7: Widowmaker - Serpent;" +
+            "8: Wayfarer - Afterlight;" +
+            "9: Wayfarer - Azuma;" +
+            "10: Wayfarer - Zeg;" +
+            "11: Wayfarer - Nomad;" +
+            "12: Thelem & T Man - Bring Me Down;" +
+            "13: Thelem & T Man - False Imprint;" +
+            "[CD]:41;" +
+            "1: Sleeper & District - Innate;" +
+            "2: Sleeper & District - Kuduro;" +
+            "3: Sleeper & District - Overflow;" +
+            "4: Sleeper & District - Psychosis;" +
+            "5: Sleeper & District - Ressurection;" +
+            "6: Sleeper & District - War;" +
+            "7: J Kenzo - Ricochet;" +
+            "8: J Kenzo - Depth Charge;" +
+            "9: Dubtek - Bonecrusher;" +
+            "10: Droid Sector - Biinary Plague;" +
+            "11: Boot - The Gaze;" +
+            "12: Boot & Chewie - Only Me;" +
+            "[CD]:42;" +
+            "1: Demon - Chang Caine;" +
+            "2: Reamz - DMT;" +
+            "3: Reamz - Sleeping District;" +
+            "4: Reamz - Frostbite;" +
+            "5: Perverse - Obsidian;" +
+            "6: The Bassist - Lockdown;" +
+            "7: Ribs - Mollusc (Riskotheque Remix);" +
+            "8: Skream - Wobble That Gut (Widowmaker Remix);" +
+            "9: Black Sun Empire - Brommer;" +
+            "10: Black Sun Empire - Dirty Friday;" +
+            "11: Emalkay - When I Look At You;" +
+            "12: Emalkay - When I Look At You (Sduk Remix);";
 }
