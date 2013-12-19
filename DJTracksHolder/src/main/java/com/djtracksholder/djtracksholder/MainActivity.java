@@ -155,7 +155,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 300;
+            return 5;
         }
 
         @Override
@@ -204,23 +204,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            if (MockData.allTracks == null) {
-                MockData.allTracks = holderProvider.getAllTracks();
-            }
-
-            this.tracks = new ArrayList<Track>();
-            for (Track track : MockData.allTracks) {
-                if (track.getCdNumber() == sectionNumber) {
-                    this.tracks.add(track);
-                }
-            }
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
-            setListAdapter(listAdapter);
+            //ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
+            //setListAdapter(listAdapter);
         }
 
         @Override

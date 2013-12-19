@@ -81,15 +81,14 @@ public class AlphabetActivity extends Activity {
                 MockData.allTracks = holderProvider.getAllTracks();
             }
 
-            this.tracks = new ArrayList<Track>();
-            tracks = MockData.allTracks;
-            Collections.sort(tracks);
+            this.tracks = new ArrayList<Track>(MockData.allTracks);
+            Collections.sort(this.tracks);
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
+            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row_listing, this.tracks);
             setListAdapter(listAdapter);
         }
 

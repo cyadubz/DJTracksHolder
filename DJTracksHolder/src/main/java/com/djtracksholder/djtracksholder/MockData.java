@@ -368,7 +368,7 @@ public class MockData {
             "[CD]:32;" +
             "1: Benton - Fathers Son;" +
             "2: Benton - Believe;" +
-            "3: Benton - Hermans Hedeout;" +
+            "3: Benton - Hermans Hideout;" +
             "4: Benton - Defect Mind;" +
             "5: Benton - 20 20 VIP;" +
             "6: Benton - The Prey;" +

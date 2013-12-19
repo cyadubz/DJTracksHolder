@@ -176,6 +176,7 @@ public class BrowseActivity extends Activity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
+            //MainCursorAdapter listAdapter = new MainCursorAdapter(getActivity(), R.layout.track_row, holderProvider.getAllTracksCursor(), null, null, 0);
             setListAdapter(listAdapter);
         }
 

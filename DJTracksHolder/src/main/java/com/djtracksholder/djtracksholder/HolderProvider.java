@@ -51,6 +51,22 @@ public class HolderProvider {
         return tracks;
     }
 
+    public Cursor getAllTracksCursor() {
+        String query = "select author.name, " +
+                "track.title, " +
+                "holder.cdnumber, " +
+                "holder.tracknumber " +
+                "FROM " +
+                "author, track, holder " +
+                "WHERE " +
+                "author.authorId = track.authorId AND " +
+                "holder.trackid = track.trackid;";
+
+        db = getDbOpen().getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
     public void addTrackToHolder(String authorName, String trackName, int cd, int n) {
         if (trackName.contains("'")) {
             trackName = trackName.replaceAll("'", "''");

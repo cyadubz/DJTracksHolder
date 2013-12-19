@@ -38,7 +38,6 @@ public class BrowseTracksAdapter extends ArrayAdapter<Track> {
 
             TextView authorName = (TextView)v.findViewById(R.id.authorName);
             TextView trackTitle = (TextView)v.findViewById(R.id.trackTitle);
-            TextView remixerName= (TextView)v.findViewById(R.id.remixerName);
             TextView cdNumber   = (TextView)v.findViewById(R.id.cdNumber);
             TextView trackNumber= (TextView)v.findViewById(R.id.trackNumber);
 
