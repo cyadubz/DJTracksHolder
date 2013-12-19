@@ -3,11 +3,10 @@ package com.djtracksholder.djtracksholder.com.djtracksholder.beans;
 /**
  * Created by Vadym_Vykhrystiuk on 12/6/13.
  */
-public class Track {
+public class Track implements Comparable<Track> {
 
     private String authorName;
     private String trackName;
-    private String remixerName;
     private int cdNumber;
     private int trackNumber;
 
@@ -27,14 +26,6 @@ public class Track {
         this.trackName = trackName;
     }
 
-    public String getRemixerName() {
-        return remixerName;
-    }
-
-    public void setRemixerName(String remixerName) {
-        this.remixerName = remixerName;
-    }
-
     public int getCdNumber() {
         return cdNumber;
     }
@@ -49,5 +40,10 @@ public class Track {
 
     public void setTrackNumber(int trackNumber) {
         this.trackNumber = trackNumber;
+    }
+
+    @Override
+    public int compareTo(Track track) {
+        return this.getAuthorName().compareTo(track.getAuthorName());
     }
 }

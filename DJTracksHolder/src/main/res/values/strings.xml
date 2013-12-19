@@ -8,6 +8,8 @@
     <string name="action_browse">Browse</string>
     <string name="action_search">Search</string>
     <string name="title_activity_browse">BrowseActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_alphabet">Alphabet</string>
+    <string name="title_activity_alphabet">AlphabetActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

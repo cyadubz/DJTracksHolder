@@ -10,6 +10,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -63,7 +64,6 @@ public class BrowseActivity extends Activity {
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         dbOpen = new DBHelper(this);
         db = dbOpen.getWritableDatabase();
     }
@@ -83,8 +83,9 @@ public class BrowseActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
+            case R.id.action_alphabet:
+                Intent intent = new Intent(this, AlphabetActivity.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,7 +112,7 @@ public class BrowseActivity extends Activity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return MockData.getCdCount();
         }
 
         @Override
@@ -133,7 +134,6 @@ public class BrowseActivity extends Activity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends ListFragment {
-        public static List<Track> allTracks;
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
@@ -160,12 +160,12 @@ public class BrowseActivity extends Activity {
         public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            if (this.allTracks == null) {
-                this.allTracks = holderProvider.getAllTracks();
+            if (MockData.allTracks == null) {
+                MockData.allTracks = holderProvider.getAllTracks();
             }
 
             this.tracks = new ArrayList<Track>();
-            for (Track track : allTracks) {
+            for (Track track : MockData.allTracks) {
                 if (track.getCdNumber() == sectionNumber) {
                     this.tracks.add(track);
                 }
@@ -184,7 +184,8 @@ public class BrowseActivity extends Activity {
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText(MockData.ok);
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }

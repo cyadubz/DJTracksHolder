@@ -27,7 +27,6 @@ public class BrowseTracks extends ListFragment {
             Track track = new Track();
             track.setAuthorName("Author" + i);
             track.setTrackName("Track" + i);
-            track.setRemixerName("Benga");
             track.setCdNumber(i);
             track.setTrackNumber(i);
             tracks.add(track);

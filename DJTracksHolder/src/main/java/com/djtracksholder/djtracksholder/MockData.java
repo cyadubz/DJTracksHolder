@@ -1,9 +1,21 @@
 package com.djtracksholder.djtracksholder;
 
+import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
+
+import java.util.List;
+
 /**
  * Created by Vadym_Vykhrystiuk on 12/18/13.
  */
 public class MockData {
+    public static String ok;
+    public static List<Track> allTracks;
+
+    public static int getCdCount() {
+        return cdCount;
+    }
+
+    public static int cdCount = 32;
     public final static String DATA = "" +
             "[CD]:1;" +
             "1: Seven - Go To War;" +

@@ -25,9 +25,18 @@
         </activity>
         <activity
             android:name="com.djtracksholder.djtracksholder.BrowseActivity"
-            android:parentActivityName="com.djtracksholder.djtracksholder.MainActivity"
             android:label="@string/title_activity_browse"
+            android:parentActivityName="com.djtracksholder.djtracksholder.MainActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.djtracksholder.djtracksholder.AlphabetActivity"
+            android:label="@string/title_activity_alphabet"
+            android:screenOrientation="portrait"
+            android:parentActivityName="MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
     </application>
 

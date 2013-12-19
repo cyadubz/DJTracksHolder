@@ -44,7 +44,6 @@ public class BrowseTracksAdapter extends ArrayAdapter<Track> {
 
             authorName.setText(track.getAuthorName());
             trackTitle.setText(track.getTrackName());
-            remixerName.setText(track.getRemixerName());
             cdNumber.setText(String.valueOf(track.getCdNumber()));
             trackNumber.setText(String.valueOf(track.getTrackNumber()));
         }

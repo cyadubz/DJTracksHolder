@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         //MOCKING OR REAL DATA HERE
 
         this.holderProvider = new HolderProvider(dbOpen);
-        // this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
+        //this.holderProvider.addTracksToHolder(Parser.parseThisShit(MockData.DATA));
     }
 
 
@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends ListFragment {
-        public static List<Track> allTracks;
+        //public static List<Track> allTracks;
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
@@ -204,12 +204,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            if (this.allTracks == null) {
-                this.allTracks = holderProvider.getAllTracks();
+            if (MockData.allTracks == null) {
+                MockData.allTracks = holderProvider.getAllTracks();
             }
 
             this.tracks = new ArrayList<Track>();
-            for (Track track : allTracks) {
+            for (Track track : MockData.allTracks) {
                 if (track.getCdNumber() == sectionNumber) {
                     this.tracks.add(track);
                 }

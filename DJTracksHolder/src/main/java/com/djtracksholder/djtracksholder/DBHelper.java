@@ -17,8 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TRACK_TABLE_CREATE = "create table " + TRACK_TABLE_NAME + " (" +
             "trackid integer primary key autoincrement, " +
             "title text, " +
-            "authorid integer, " +
-            "remixerid integer" + ");";
+            "authorid integer);";
 
     private static final String AUTHOR_TABLE_CREATE = "create table " + AUTHOR_TABLE_NAME + " (" +
             "authorid integer primary key autoincrement, " +
