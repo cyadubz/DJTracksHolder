@@ -10,7 +10,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
@@ -133,11 +137,16 @@ public class BrowseActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends ListFragment {
+    public static class PlaceholderFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
         private int number;
+        private Cursor cursor;
+        private SimpleCursorAdapter simpleCursorAdapter;
+
+        private static final String[] FROM = {DBHelper.AUTHOR_NAME, DBHelper.TRACK_TITLE, DBHelper.HOLDER_TRACKNUMBER};
+        private static final int[] TO = {R.id.authorName, R.id.trackTitle, R.id.trackNumber};
 
         /**
          * The fragment argument representing the section number for this
@@ -160,35 +169,42 @@ public class BrowseActivity extends Activity {
         public PlaceholderFragment(int sectionNumber, DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            if (MockData.allTracks == null) {
-                MockData.allTracks = holderProvider.getAllTracks();
-            }
-
-            this.tracks = new ArrayList<Track>();
-            for (Track track : MockData.allTracks) {
-                if (track.getCdNumber() == sectionNumber) {
-                    this.tracks.add(track);
-                }
-            }
+            this.number = sectionNumber;
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row, tracks);
-            //MainCursorAdapter listAdapter = new MainCursorAdapter(getActivity(), R.layout.track_row, holderProvider.getAllTracksCursor(), null, null, 0);
-            setListAdapter(listAdapter);
+            simpleCursorAdapter = new SimpleCursorAdapter(getActivity(), R.layout.track_row, cursor, FROM, TO, 0);
+            setListAdapter(simpleCursorAdapter);
+            Bundle bndl = new Bundle();
+            bndl.putInt("number", number);
+            getLoaderManager().initLoader(0, bndl, this);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(MockData.ok);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)) + " CD");
             return rootView;
+        }
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+            return new TracksLoader(getActivity(), dbOpen, bundle);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+            simpleCursorAdapter.swapCursor(cursor);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> cursorLoader) {
+
         }
     }
 

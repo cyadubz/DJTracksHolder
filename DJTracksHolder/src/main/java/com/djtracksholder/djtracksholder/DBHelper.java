@@ -14,29 +14,29 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String AUTHOR_TABLE_NAME = "author";
     private static final String HOLDER_TABLE_NAME = "holder";
 
-    public static final String TRACK_TRACKID = "trackid";
+    public static final String TRACK_TRACKID = "_id";
     public static final String TRACK_TITLE = "title";
     public static final String TRACK_AUTHORID = "authorid";
 
-    public static final String AUTHOR_AUTHORID = "authorid";
+    public static final String AUTHOR_AUTHORID = "_id";
     public static final String AUTHOR_NAME = "name";
 
-    public static final String HOLDER_ID = "id";
+    public static final String HOLDER_ID = "_id";
     public static final String HOLDER_TRACKID = "trackid";
     public static final String HOLDER_CDNUMBER = "cdnumber";
     public static final String HOLDER_TRACKNUMBER = "tracknumber";
 
     private static final String TRACK_TABLE_CREATE = "create table " + TRACK_TABLE_NAME + " (" +
-            "trackid integer primary key autoincrement, " +
+            "_id integer primary key autoincrement, " +
             "title text, " +
             "authorid integer);";
 
     private static final String AUTHOR_TABLE_CREATE = "create table " + AUTHOR_TABLE_NAME + " (" +
-            "authorid integer primary key autoincrement, " +
+            "_id integer primary key autoincrement, " +
             "name text" + ");";
 
     private static final String HOLDER_TABLE_CREATE = "create table " + HOLDER_TABLE_NAME + " (" +
-            "id integer primary key autoincrement, " +
+            "_id integer primary key autoincrement, " +
             "trackid integer, " +
             "cdnumber integer, " +
             "tracknumber integer" + ");";

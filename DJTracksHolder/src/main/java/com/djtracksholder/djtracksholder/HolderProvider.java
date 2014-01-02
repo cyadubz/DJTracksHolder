@@ -29,8 +29,8 @@ public class HolderProvider {
                 "FROM " +
                 "author, track, holder " +
                 "WHERE " +
-                "author.authorId = track.authorId AND " +
-                "holder.trackid = track.trackid;";
+                "author._id = track.authorId AND " +
+                "holder.trackid = track._id;";
 
         db = getDbOpen().getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -52,15 +52,34 @@ public class HolderProvider {
     }
 
     public Cursor getAllTracksCursor() {
-        String query = "select author.name, " +
+        String query = "select track._id, " +
+                "author.name, " +
                 "track.title, " +
                 "holder.cdnumber, " +
                 "holder.tracknumber " +
                 "FROM " +
                 "author, track, holder " +
                 "WHERE " +
-                "author.authorId = track.authorId AND " +
-                "holder.trackid = track.trackid;";
+                "author._id = track.authorId AND " +
+                "holder.trackid = track._id ORDER BY author.name COLLATE NOCASE;";
+
+        db = getDbOpen().getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor getTracksFromCD(int cdNumber) {
+        String query = "select track._id, " +
+                "author.name, " +
+                "track.title, " +
+                "holder.cdnumber, " +
+                "holder.tracknumber " +
+                "FROM " +
+                "author, track, holder " +
+                "WHERE " +
+                "author._id = track.authorId AND " +
+                "holder.trackid = track._id AND " +
+                "holder.cdnumber = " + cdNumber + ";";
 
         db = getDbOpen().getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -124,7 +143,7 @@ public class HolderProvider {
 
     private int getTrackId(String trackName, int authorId) {
         db = getDbOpen().getReadableDatabase();
-        String query = "select trackId from track where title ='" + trackName +
+        String query = "select _id from track where title ='" + trackName +
                 "' " +
                 "and authorId ='" + authorId + "';";
 
@@ -151,7 +170,7 @@ public class HolderProvider {
 
     private int getAuthorId(String authorName) {
         db = getDbOpen().getReadableDatabase();
-        String query = "select authorId from author where name='" + authorName +
+        String query = "select _id from author where name='" + authorName +
                 "';";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) return cursor.getInt(0);

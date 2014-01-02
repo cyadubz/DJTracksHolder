@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.app.LoaderManager;
+import android.content.Loader;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
 import com.djtracksholder.djtracksholder.com.djtracksholder.utils.CompByAuthor;
@@ -67,29 +72,26 @@ public class AlphabetActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends ListFragment {
+    public static class PlaceholderFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
         //public static List<Track> allTracks;
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
         private int number;
+        private Cursor cursor;
+        private AlphabetCursorAdapter alphabetCursorAdapter;
 
         public PlaceholderFragment(DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
-            if (MockData.allTracks == null) {
-                MockData.allTracks = holderProvider.getAllTracks();
-            }
-
-            this.tracks = new ArrayList<Track>(MockData.allTracks);
-            Collections.sort(this.tracks);
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            ListAdapter listAdapter = new BrowseTracksAdapter(getActivity(), R.layout.track_row_listing, this.tracks);
-            setListAdapter(listAdapter);
+            alphabetCursorAdapter = new AlphabetCursorAdapter(getActivity(), cursor);
+            setListAdapter(alphabetCursorAdapter);
+            getLoaderManager().initLoader(0, null, this);
         }
 
         @Override
@@ -100,6 +102,23 @@ public class AlphabetActivity extends Activity {
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
+        }
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+            return new TracksLoader(getActivity(), dbOpen, null);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+            alphabetCursorAdapter.swapCursor(cursor);
+            getListView().setFastScrollEnabled(true);
+            getListView().setScrollingCacheEnabled(true);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> cursorLoader) {
+
         }
     }
 

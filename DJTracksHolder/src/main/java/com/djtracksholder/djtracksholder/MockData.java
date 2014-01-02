@@ -15,7 +15,7 @@ public class MockData {
         return cdCount;
     }
 
-    public static int cdCount = 32;
+    public static int cdCount = 42;
     public final static String DATA = "" +
             "[CD]:1;" +
             "1: Seven - Go To War;" +
