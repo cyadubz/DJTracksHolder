@@ -1,6 +1,5 @@
 package com.djtracksholder.djtracksholder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -8,7 +7,6 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.Intent;
@@ -18,13 +16,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
+import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -148,6 +145,14 @@ public class BrowseActivity extends Activity {
         private static final String[] FROM = {DBHelper.AUTHOR_NAME, DBHelper.TRACK_TITLE, DBHelper.HOLDER_TRACKNUMBER};
         private static final int[] TO = {R.id.authorName, R.id.trackTitle, R.id.trackNumber};
 
+        private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                holderProvider.addToWaitingList(l);
+                getLoaderManager().getLoader(0).forceLoad();
+            }
+        };
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -200,6 +205,7 @@ public class BrowseActivity extends Activity {
         @Override
         public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
             simpleCursorAdapter.swapCursor(cursor);
+            getListView().setOnItemClickListener(itemClickListener);
         }
 
         @Override

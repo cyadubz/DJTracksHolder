@@ -14,21 +14,27 @@ import java.util.concurrent.TimeUnit;
 public class TracksLoader extends CursorLoader {
     private HolderProvider provider;
     private int number = 0;
+    private int section = 0;
 
     public TracksLoader(Context context, DBHelper dbOpen, Bundle bundle) {
         super(context);
         this.provider = new HolderProvider(dbOpen);
         if (bundle != null) {
             this.number = bundle.getInt("number");
+            this.section = bundle.getInt("section");
         }
     }
 
     @Override
     public Cursor loadInBackground() {
         Cursor cursor;
-        if (number != 0) {
+        if (section == 1) {
+            cursor = provider.getTracksFromWaitList();
+        }
+        else if (number != 0) {
             cursor = provider.getTracksFromCD(number);
         }
+
         else {
             cursor = provider.getAllTracksCursor();
         }

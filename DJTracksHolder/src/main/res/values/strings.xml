@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">DJ Tracks Holder</string>
-    <string name="title_section1">Browse Tracks</string>
+    <string name="title_section1">Wait List</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="action_browse">Browse</string>
@@ -11,5 +11,6 @@
     <string name="action_alphabet">Alphabet</string>
     <string name="title_activity_alphabet">AlphabetActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="app_label">DJ</string>
 
 </resources>

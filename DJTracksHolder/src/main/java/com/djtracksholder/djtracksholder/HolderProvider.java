@@ -68,6 +68,40 @@ public class HolderProvider {
         return cursor;
     }
 
+    public void addToWaitingList(long id) {
+        db = getDbOpen().getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.WAITLIST_TRACKID, id);
+        db.insert(DBHelper.WAITLIST_TABLE_NAME, null, cv);
+        db.close();
+    }
+
+    public void removeTrackFromWaitingList(long id) {
+        db = getDbOpen().getWritableDatabase();
+        db.delete(DBHelper.WAITLIST_TABLE_NAME, DBHelper.WAITLIST_ID + " = " + id, null);
+        db.close();
+    }
+
+    public Cursor getTracksFromWaitList() {
+        String query = "select " +
+                "waitlist._id, " +
+                "waitlist.trackid, " +
+                "author.name, " +
+                "track.title, " +
+                "holder.cdnumber, " +
+                "holder.tracknumber " +
+                "from " +
+                "waitlist, author, track, holder " +
+                "WHERE " +
+                "author._id = track.authorId AND " +
+                "holder.trackid = track._id AND " +
+                "waitlist.trackid = track._id;";
+
+        db = getDbOpen().getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
     public Cursor getTracksFromCD(int cdNumber) {
         String query = "select track._id, " +
                 "author.name, " +

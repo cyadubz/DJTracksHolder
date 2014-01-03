@@ -1,8 +1,6 @@
 package com.djtracksholder.djtracksholder;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.Loader;
@@ -14,17 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
-import com.djtracksholder.djtracksholder.com.djtracksholder.utils.CompByAuthor;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class AlphabetActivity extends Activity {
@@ -47,7 +38,6 @@ public class AlphabetActivity extends Activity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +71,14 @@ public class AlphabetActivity extends Activity {
         private Cursor cursor;
         private AlphabetCursorAdapter alphabetCursorAdapter;
 
+        private OnItemClickListener itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                holderProvider.addToWaitingList(l);
+                getLoaderManager().getLoader(0).forceLoad();
+            }
+        };
+
         public PlaceholderFragment(DBHelper dbOpen) {
             this.dbOpen = dbOpen;
             this.holderProvider = new HolderProvider(dbOpen);
@@ -89,6 +87,7 @@ public class AlphabetActivity extends Activity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
             alphabetCursorAdapter = new AlphabetCursorAdapter(getActivity(), cursor);
             setListAdapter(alphabetCursorAdapter);
             getLoaderManager().initLoader(0, null, this);
@@ -114,6 +113,7 @@ public class AlphabetActivity extends Activity {
             alphabetCursorAdapter.swapCursor(cursor);
             getListView().setFastScrollEnabled(true);
             getListView().setScrollingCacheEnabled(true);
+            getListView().setOnItemClickListener(itemClickListener);
         }
 
         @Override

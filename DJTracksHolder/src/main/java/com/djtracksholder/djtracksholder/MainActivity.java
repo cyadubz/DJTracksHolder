@@ -10,7 +10,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -20,7 +23,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
@@ -176,12 +182,13 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends ListFragment {
-        //public static List<Track> allTracks;
+    public static class PlaceholderFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
         private List<Track> tracks;
         private HolderProvider holderProvider;
         private DBHelper dbOpen;
         private int number;
+        private SimpleCursorAdapter adapter;
+        private Cursor cursor;
 
         /**
          * The fragment argument representing the section number for this
@@ -194,10 +201,17 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          * number.
          */
         public static PlaceholderFragment newInstance(int sectionNumber, DBHelper dbOpen) {
-            PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber, dbOpen);
+            PlaceholderFragment fragment;
+            if (sectionNumber == 1) {
+                fragment = new WaitListFragment(sectionNumber, dbOpen);
+            }
+            else {
+                fragment = new PlaceholderFragment(sectionNumber, dbOpen);
+            }
+
             Bundle args = new Bundle();
-            //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            //fragment.setArguments(args);
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
             return fragment;
         }
 
@@ -222,6 +236,95 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+
+        public SimpleCursorAdapter getAdapter() {
+            return adapter;
+        }
+
+        public Cursor getCursor() {
+            return cursor;
+        }
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+            return new TracksLoader(getActivity(), dbOpen, bundle);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+            getAdapter().swapCursor(cursor);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> cursorLoader) {
+
+        }
+
+        public void setAdapter(SimpleCursorAdapter adapter) {
+            this.adapter = adapter;
+        }
+
+        public HolderProvider getHolderProvider() {
+            return holderProvider;
+        }
+    }
+
+    public static class WaitListFragment extends PlaceholderFragment {
+
+        private static final String[] FROM = {DBHelper.AUTHOR_NAME, DBHelper.TRACK_TITLE, DBHelper.HOLDER_CDNUMBER, DBHelper.HOLDER_TRACKNUMBER};
+        private static final int[] TO = {R.id.authorName, R.id.trackTitle, R.id.cdNumber, R.id.trackNumber};
+
+        private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getHolderProvider().removeTrackFromWaitingList(l);
+                getLoaderManager().getLoader(0).forceLoad();
+            }
+        };
+
+        public WaitListFragment(int sectionNumber, DBHelper dbOpen) {
+            super(sectionNumber, dbOpen);
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setAdapter(new SimpleCursorAdapter(getActivity(), R.layout.track_row_listing, getCursor(), FROM, TO, 0));
+            Bundle bundle = new Bundle();
+            bundle.putInt("section", 1);
+            getLoaderManager().initLoader(0, bundle, this);
+            setListAdapter(getAdapter());
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            View rootView = inflater.inflate(R.layout.fragment_browse_waitlist, container, false);
+            Button button = (Button) rootView.findViewById(R.id.button);
+            button.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    return false;
+                }
+            });
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getLoaderManager().getLoader(0).forceLoad();
+                }
+            });
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+            getAdapter().swapCursor(cursor);
+            getListView().setOnItemClickListener(itemClickListener);
+        }
+
     }
 
 }

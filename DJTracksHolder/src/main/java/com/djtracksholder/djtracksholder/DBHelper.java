@@ -26,6 +26,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String HOLDER_CDNUMBER = "cdnumber";
     public static final String HOLDER_TRACKNUMBER = "tracknumber";
 
+    public static final String WAITLIST_TABLE_NAME = "waitlist";
+    public static final String WAITLIST_ID = "_id";
+    public static final String WAITLIST_TRACKID = "trackid";
+
     private static final String TRACK_TABLE_CREATE = "create table " + TRACK_TABLE_NAME + " (" +
             "_id integer primary key autoincrement, " +
             "title text, " +
@@ -41,6 +45,10 @@ public class DBHelper extends SQLiteOpenHelper {
             "cdnumber integer, " +
             "tracknumber integer" + ");";
 
+    private static final String WAITLIST_TABLE_CREATE = "create table " + WAITLIST_TABLE_NAME + " (" +
+            "_id integer primary key autoincrement, " +
+            "trackid integer);";
+
 
     public DBHelper(Context context) {
         super(context, "DJHolder", null, 1);
@@ -51,6 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(TRACK_TABLE_CREATE);
         sqLiteDatabase.execSQL(AUTHOR_TABLE_CREATE);
         sqLiteDatabase.execSQL(HOLDER_TABLE_CREATE);
+        sqLiteDatabase.execSQL(WAITLIST_TABLE_CREATE);
     }
 
     @Override
