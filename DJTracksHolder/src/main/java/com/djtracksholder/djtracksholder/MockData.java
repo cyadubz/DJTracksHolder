@@ -1,6 +1,8 @@
 package com.djtracksholder.djtracksholder;
 
-import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
+import android.content.Context;
+
+import com.djtracksholder.djtracksholder.com.djtracksholder.beans.TrackInfo;
 
 import java.util.List;
 
@@ -9,13 +11,23 @@ import java.util.List;
  */
 public class MockData {
     public static String ok;
-    public static List<Track> allTracks;
+    public static List<TrackInfo> allTracks;
 
     public static int getCdCount() {
         return cdCount;
     }
+    private static int position = 0;
+    public static int getPosition() {
+        return position;
+    }
 
-    public static int cdCount = 42;
+    public static void setPosition(int cdPosition) {
+        position = cdPosition;
+    }
+
+    public static Context context;
+
+    public static int cdCount = 48;
     public final static String DATA = "" +
             "[CD]:1;" +
             "1: Seven - Go To War;" +
@@ -496,5 +508,138 @@ public class MockData {
             "9: Black Sun Empire - Brommer;" +
             "10: Black Sun Empire - Dirty Friday;" +
             "11: Emalkay - When I Look At You;" +
-            "12: Emalkay - When I Look At You (Sduk Remix);";
+            "12: Emalkay - When I Look At You (Sduk Remix);" +
+            "[CD]:43;" +
+            "1: Matt U - Danger (District Remix);" +
+            "2: Matt U - Danger (Dyad Remix);" +
+            "3: Mala - Changes (Distance Remix);" +
+            "4: J Kenzo - Ricochet;" +
+            "5: Wheelton - Rhythm;" +
+            "6: Wheelton - The Future;" +
+            "7: Proxima - Lie Detection;" +
+            "8: Digid - Time Capture;" +
+            "9: P Money - Dubsteppin (J Kenzo Remix);" +
+            "10: Commit - Amazon;" +
+            "11: Commit - Droid Dance;" +
+            "12: Commit - Jupiter;" +
+            "13: Nourma - Untitled (Unfinished);" +
+            "[CD]:44;" +
+            "1: AxH - I Feel Safe;" +
+            "2: AxH - Giant Footprints;" +
+            "3: AxH - Everdine;" +
+            "4: Headhunter - Clone;" +
+            "5: Headhunter - Projector;" +
+            "6: Phaeleh - So Far Away;" +
+            "7: Phaeleh - Night Lights (ft Cian Finn);" +
+            "8: Phaeleh - Storm (ft Jess Mills);" +
+            "9: Phaeleh - Whistling In The Dark;" +
+            "10: Phaeleh - Journey;" +
+            "11: Charlie P - Okay Okay;" +
+            "12: Charlie P - Not Yet;" +
+            "13: Charlie P - We Only Live Once;" +
+            "[CD]:45;" +
+            "1: Compa & Ipman - Let Them;" +
+            "2: Compa - Earth Orbit;" +
+            "3: Amit - Daaku;" +
+            "4: Amit - Your Native God;" +
+            "5: Amit - Ill Cut You Down;" +
+            "6: Amit - Mr Clark;" +
+            "7: The Illuminated - Vintage;" +
+            "8: The Illuminated - De Dust;" +
+            "9: The Illuminated - Psychonauts;" +
+            "10: The Illuminated - HMQ;" +
+            "11: Wheelton - Ganja;" +
+            "12: Wheelton - Paranormal;" +
+            "13: Black Sun Empire & Noisia - Hideous (Wheelton Remix);" +
+            "[CD]:46;" +
+            "1: Distance - Andromeda;" +
+            "2: Distance - Untouchable;" +
+            "3: Distance - Broken Dawn;" +
+            "4: TMSV - The Cosmonaut;" +
+            "5: Fable - Roots;" +
+            "6: Matt U - Double Blind;" +
+            "7: Nanobyte - Mine;" +
+            "8: Nanobyte - True Story;" +
+            "9: Nanobyte - Hidden Code VIP;" +
+            "10: SP MC - Trust Nobody;" +
+            "11: SP MC - Oh My Gosh;" +
+            "12: SP MC - Hunted;" +
+            "[CD]:47;" +
+            "1: Biome - The Scent;" +
+            "2: Nanobyte - Misplaced True;" +
+            "3: Roommate & The Bassist - Rub A Dub;" +
+            "4: Sukh Knight & Mensah & Squarewave - Quad Bikes VIP;" +
+            "5: Katy B - Lights On (Skream Remix);" +
+            "6: Katy B - On A Mission;" +
+            "7: Ribs & IG88 - Mollusc (Riskotheque Remix);" +
+            "8: Tallan - Hornet;" +
+            "9: Shackles - Phobia;" +
+            "10: Paranoise Collision - Open Fire (Riskotheque Remix);" +
+            "11: True Tiger - Motor Oil;" +
+            "12: Eliphino - More Than Me;" +
+            "[CD]:48;" +
+            "1: Commodo - Fuck Mountain;" +
+            "2: Commodo - Green Piace;" +
+            "3: Feonix ft Kaya - Eon Eyes;" +
+            "4: Feonix ft Kaya - Eon Eyes (Deafblind Remix);" +
+            "5: Feonix ft Kaya - Eon Eyes (Demon Remix);" +
+            "6: Feonix ft Kaya - Eon Eyes (Slaven Remix);" +
+            "7: Numa Crew - Knowledge;" +
+            "8: TMSV - Tread Lighty;" +
+            "[CD]:49;" +
+            "1: Chewie - Isolation;" +
+            "2: Asylum - Zero Gravity VIP;" +
+            "3: Seven - Walter White VIP;" +
+            "4: Biome - Rise Up;" +
+            "5: Reamz - Comatose;" +
+            "6: Reamz - Haircut;" +
+            "7: Reamz - Hush Hush;" +
+            "8: Reamz - Own The Game;" +
+            "9: Reamz - Through The Cracks;" +
+            "10: Chewie - Hammeredhead;" +
+            "[CD]:50;" +
+            "1: Bukez Finezt - Under Control;" +
+            "2: Bukez Finezt - You Dont Belong Here;" +
+            "3: Bukez Finezt - Pace Yourself;" +
+            "4: Biome - Cromos;" +
+            "5: Biome - Genesis;" +
+            "6: Biome - Delta;" +
+            "7: Biome & Fallen 45  - Lost;" +
+            "8: Truth - 30 000 ft;" +
+            "9: Truth - Gangsters;" +
+            "10: Truth - Trenchtown;" +
+            "11: Truth - Lucid;" +
+            "[CD]:51;" +
+            "1: District - Tempest;" +
+            "2: District - Aftermath;" +
+            "3: District - Roys Theme;" +
+            "4: Thelem - Haunted Harmonics;" +
+            "5: Thelem - Forces Of Nature;" +
+            "6: Thelem - Shottaz;" +
+            "7: Thelem - Obsessions;" +
+            "8: Benga - Smack Your Bitch Up;" +
+            "9: ASAP Rocky - Fucking Problem;" +
+            "[CD]:52;" +
+            "1: Reamz - Light From A Darkened Place (Ft Flipz);" +
+            "2: Reamz - Modulus;" +
+            "3: Reamz - Turn West;" +
+            "4: Biome - Time Lapse;" +
+            "5: Biome - The Watchmen;" +
+            "6: Sukh Knight - Angels;" +
+            "7: Sukh Knight - Chronicle;" +
+            "8: True Tiger - Can You Feel The Bass (Instrumental);" +
+            "9: True Tiger - Can You Feel The Bass;" +
+            "10: Soulware - Drawn Together (Live);" +
+            "11: Soulware - Rise Up (Studio Mix);" +
+            "[CD]:53;" +
+            "1: Truth - The Only Ones;" +
+            "2: Truth - Them;" +
+            "3: Truth - Goodbye;" +
+            "4: Truth - Hollow World;" +
+            "5: Asylum - Always Love;" +
+            "6: Asylum - Bad Habbit;" +
+            "7: Distance - Repercussions;" +
+            "8: Distance - Headstrung;" +
+            "9: Distance - Out Of Mind;" +
+            "10: Distance - Loosen My Grip;";
 }

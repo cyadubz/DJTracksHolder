@@ -3,7 +3,17 @@
     tools:context=".BrowseTracks" >
     
     <item android:id="@+id/action_browse"
+        android:icon="@drawable/ic_action_collection"
         android:title="@string/action_browse"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="ifRoom|collapseActionView" />
+    <item android:id="@+id/action_alphabet"
+        android:icon="@drawable/ic_action_alphabet"
+        android:title="@string/action_alphabet"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom|collapseActionView" />
+    <item android:id="@+id/action_editor"
+        android:title="@string/action_editor"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 </menu>

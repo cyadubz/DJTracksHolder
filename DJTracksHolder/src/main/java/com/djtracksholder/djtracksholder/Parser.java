@@ -1,6 +1,8 @@
 package com.djtracksholder.djtracksholder;
 
-import com.djtracksholder.djtracksholder.com.djtracksholder.beans.Track;
+import android.content.SharedPreferences;
+
+import com.djtracksholder.djtracksholder.com.djtracksholder.beans.TrackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +12,12 @@ import java.util.List;
  */
 public class Parser {
 
-    public static List<Track> parseThisShit(String data) {
+    public static List<TrackInfo> parseThisShit(String data) {
+        SharedPreferences settings = TheApplication.getAppContext().getSharedPreferences("Main", 0);
+
         String[] result = data.split(";");
         int currentCd = 0;
-        List<Track> tracks = new ArrayList<Track>();
+        List<TrackInfo> tracks = new ArrayList<TrackInfo>();
         for (String row : result) {
             if (row.contains("[CD]")) {
                 String[] cdRow = row.split(":");
@@ -25,7 +29,7 @@ public class Parser {
                 break;
             }
 
-            Track track = new Track();
+            TrackInfo track = new TrackInfo();
             track.setCdNumber(currentCd);
             String[] trackRow = row.split(":");
             track.setTrackNumber(Integer.parseInt(trackRow[0].trim()));
@@ -35,6 +39,13 @@ public class Parser {
             track.setTrackName(title);
             tracks.add(track);
         }
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("CDCount", tracks.get(tracks.size() - 1).getCdNumber());
+        // Commit the edits!
+        editor.commit();
+
+        // MockData.cdCount = tracks.get(tracks.size() - 1).getCdNumber();
 
         return tracks;
     }

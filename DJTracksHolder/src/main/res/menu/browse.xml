@@ -3,6 +3,7 @@
     tools:context=".BrowseActivity" >
     
     <item android:id="@+id/action_alphabet"
+        android:icon="@drawable/ic_action_alphabet"
         android:title="@string/action_alphabet"
         android:orderInCategory="100"
         android:showAsAction="ifRoom" />

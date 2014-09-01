@@ -9,8 +9,17 @@
     <string name="action_search">Search</string>
     <string name="title_activity_browse">BrowseActivity</string>
     <string name="action_alphabet">Alphabet</string>
+    <string name="action_editor">Editor</string>
     <string name="title_activity_alphabet">AlphabetActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="app_label">DJ</string>
+    <string name="heading_dismissable_views">text</string>
+    <string name="title_activity_editor">EditorActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_new_cd">AddNewCd</string>
+
+    <!-- Add Cd -->
+    <string name="add_add">Add Track</string>
+    <string name="add_edit">Edit Track</string>
 
 </resources>

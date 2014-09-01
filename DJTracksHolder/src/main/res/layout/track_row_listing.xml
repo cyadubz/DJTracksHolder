@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Author"
-            android:id="@+id/authorName"
+            android:id="@+id/authorName_WaitList"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Title"
-            android:id="@+id/trackTitle" />
+            android:id="@+id/trackTitle_WaitList" />
     </LinearLayout>
     <LinearLayout
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="CD"
-            android:id="@+id/cdNumber"
+            android:id="@+id/cdNumber_WaitList"
             android:textStyle="bold"
             android:textSize="16dp" />
         <TextView
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Number"
-            android:id="@+id/trackNumber" />
+            android:id="@+id/trackNumber_WaitList" />
         </LinearLayout>
 
 </LinearLayout>
