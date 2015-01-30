@@ -42,9 +42,6 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
      * The {@link ViewPager} that will host the section contents.
      */
     CustomViewPager mViewPager;
-    int cdCount = 0;
-    DBHelper dbOpen;
-    SQLiteDatabase db;
     HolderProvider holderProvider;
 
     @Override
@@ -155,7 +152,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 5;
+            return 1;
         }
 
         @Override

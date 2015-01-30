@@ -114,7 +114,7 @@ public class HolderProvider {
 
         Track track = databaseManager.getTrackByName(trackName);
 
-        if (track == null) {
+        if (track == null || !track.getAuthor().equals(authorName)) {
             track = new Track();
             track.setName(trackName);
             track.setAuthor(author);

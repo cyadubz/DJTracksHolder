@@ -1,59 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\ormlite-core-4.48-17d210936ba01148b9e3fca326fbc5d1327e1d40.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\libs\ormlite-core-4.48.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5"/>
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-6ee0113cd9e960a5ffa3d5d11dee0c78b13ad522.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\library-2.4.0-320c9d999ba2d1e1c663f7ab23325c99fadb7fd8.jar"
-        jar="C:\Users\cya\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/libs/ormlite-core-4.48.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb"/>
+        revision="21.1.2"
+        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/ormlite-core-4.48-d88842de65f3253387e4fbd0721476a767a6952e.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-d2a3dd9d7d359d4cb44b3d8b81ee961bc8ffa142.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/classes-eb1092a12a8ffc6f64a693da42086306754949b8.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\classes-f0e5fd62e90e71243368227597b38bab9823e70e.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.0.1/classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="3dfdf1db5ce5ea2999a5dcde8c8e650b02660059"/>
+        revision="21.1.2"
+        sha1="f71a6822470c9eb659d4f4a6cb57b780b35f058b">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/classes-e2deb8ffc8c6f40b8db6bf42f84b2d9de9098cb0.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\classes-fcabf9f7b459611199213106b12e5e2974f44c3d.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jar="/home/vadym/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-439a59e056c25931ca2a3209aa763acbe2f65c41.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-cf80167a11eea64e4f563ba49792461f5b79b664.jar"
-        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/libs/ormlite-android-4.48.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+        revision="21.1.2"
+        sha1="afa06f539a4026c10b247386312aa67404b80a16">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/ormlite-android-4.48-452dde835d38f88e87d890b5ff93e1d599f3c047.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\ormlite-android-4.48-c8593b171592a1d1e886840865cfca9978f6f02c.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\libs\ormlite-android-4.48.jar"
+        jar="/home/vadym/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="afa06f539a4026c10b247386312aa67404b80a16"/>
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/library-2.4.0-03f53284e8e585c472fafd386d8d64f73f8584ad.jar" />
+    </item>
     <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\classes-9fde69b5caa0fa26ad59e05b98686c1fba426913.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.0.1\classes.jar"
+        jar="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/exploded-aar/com.fortysevendeg.swipelistview/swipelistview/1.0-SNAPSHOT/classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="f71a6822470c9eb659d4f4a6cb57b780b35f058b"/>
-    <item
-        dex="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\pre-dexed\debug\classes-792a5096f57f0f046da42f8a12fa9b3a35588440.jar"
-        jar="D:\Workspace\Android\DJTracksHolder\DJTracksHolder\build\intermediates\exploded-aar\com.fortysevendeg.swipelistview\swipelistview\1.0-SNAPSHOT\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="1e2a20cde43088b4463099d3ff2b5c6b99fdfabd"/>
+        revision="21.1.2"
+        sha1="f7b3ac367f7ff01ec4fa2d7130a471073370bdb3">
+        <dex dex="/home/vadym/holder/DJTracksHolder/DJTracksHolder/build/intermediates/pre-dexed/debug/classes-1b37ff08d0032cf83abb3a279d1420e66a4d8ee7.jar" />
+    </item>
 
-</pre-dex-items>
+</items>

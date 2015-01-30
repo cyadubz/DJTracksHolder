@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="MaterialTheme">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MaterialTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+        <item name="android:colorPrimary">#607D8B</item>
+        <item name="android:colorAccent">@color/divider_color</item>
+        <item name="android:colorPrimaryDark">#455A64</item>
+        <item name="android:textColorPrimary">#212121</item>
+        <item name="android:textColorSecondary">#727272</item>
+
+    </style>
+</resources>

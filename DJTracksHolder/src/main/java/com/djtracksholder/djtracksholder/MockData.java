@@ -641,5 +641,67 @@ public class MockData {
             "7: Distance - Repercussions;" +
             "8: Distance - Headstrung;" +
             "9: Distance - Out Of Mind;" +
-            "10: Distance - Loosen My Grip;";
+            "10: Distance - Loosen My Grip;" +
+            "[CD]:53;" +
+            "1: Truth - The Only Ones;" +
+            "2: Truth - Them;" +
+            "3: Truth - Goodbye;" +
+            "4: Truth - Hollow World;" +
+            "5: Asylum - Always Love;" +
+            "6: Asylum - Bad Habbit;" +
+            "7: Distance - Repercussions;" +
+            "8: Distance - Headstrung;" +
+            "9: Distance - Out Of Mind;" +
+            "10: Distance - Loosen My Grip;" +
+            "[CD]:54;" +
+            "1: Leon Switch - Deadlock;" +
+            "2: Leon Switch - Persepolisia;" +
+            "3: Leon Switch - Lelyss;" +
+            "4: LSN - Renegade;" +
+            "5: LSN - Apollo;" +
+            "6: Perverse - Bedrock;" +
+            "7: Biome - Function;" +
+            "8: Demon & Biome - Terminate;" +
+            "9: Cloak Chill - Cloak;" +
+            "[CD]:55;" +
+            "1: Triage & Olie Bassweight - Heavyweight;" +
+            "2: Wheelton - VNS (old);" +
+            "3: Reamz - Distant Horizon;" +
+            "4: Reamz - Old School Days;" +
+            "5: DJG - Rivet VIP;" +
+            "[CD]:56;" +
+            "1: Truth - How Strange;" +
+            "2: Demon - Break Point;" +
+            "3: Truth - Justify;" +
+            "4: Joker - Tron (Kromestar);" +
+            "5: Indiji - Darknet;" +
+            "6: Indiji - Shake The Foundations;" +
+            "7: Biome & Fallen 45 - Lost;" +
+            "8: Joker - Headtop (Badklaat Remix);" +
+            "[CD]:57;" +
+            "1: Asylum - Things You Dont Know;" +
+            "2: Asylum - Native;" +
+            "3: Asylum - Kill Room;" +
+            "4: Asylum - Chino;" +
+            "5: Thelem - Foul Play;" +
+            "6: TMSV - Scorpion;" +
+            "7: TMSV - The Cosmonaut (Thelem Remix);" +
+            "8: Thelem - Shottaz (TMSV Remix);" +
+            "9: J Kenzo & Matty G - Flatline;" +
+            "10: Truth - Questions;" +
+            "11: Kelly Dean & Deco - Concrete Landscapes (Leon Switch Remix);" +
+            "[CD]:58;" +
+            "1: Proxima - Trapped;" +
+            "2: Proxima - Hokusai;" +
+            "3: Proxima - Playing The Arp;" +
+            "4: J Kenzo - Cyborgs;" +
+            "5: True Tiger - Be Like Me;" +
+            "6: Gentlemen Dub Club - Enough (DJ Madd Remix);" +
+            "7: Proxima - Pressurized (feat P Money);" +
+            "8: Lonestar - Think About It;" +
+            "9: Chase & Status - Eastern Jam;" +
+            "10: Crim - Helix;" +
+            "11: Crim - Robot;" +
+            "12: Mistabishi - Wipe Your Tears;" +
+            "13: Seven - Retro Wave;";
 }

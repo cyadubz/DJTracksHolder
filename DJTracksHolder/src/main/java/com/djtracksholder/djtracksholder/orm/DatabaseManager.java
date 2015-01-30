@@ -185,10 +185,12 @@ public class DatabaseManager {
     public int getHolderCdCount() {
         int cdCount = 0;
         try {
-            cdCount = helper.getHoldersListDao().queryBuilder().orderBy("cdnumber", false).limit(1L).queryForFirst().getCdnumber();
+             if (helper.getHoldersListDao().queryBuilder().orderBy("cdnumber", false).limit(1L).queryForFirst() != null) {
+                 cdCount = helper.getHoldersListDao().queryBuilder().orderBy("cdnumber", false).limit(1L).queryForFirst().getCdnumber();
+             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            return 0;
         }
 
         return cdCount;
